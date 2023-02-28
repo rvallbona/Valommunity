@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ValommunityApp</string>
+    <string name="strCrearCuenta"><u>Crear Cuenta</u></string>
+    <string name="strOlvidar"><u>¿Olvidó su contraseña?</u></string>
 </resources>

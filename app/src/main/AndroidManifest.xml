@@ -13,6 +13,13 @@
         android:theme="@style/Theme.ValommunityApp"
         tools:targetApi="31">
         <activity
+            android:name=".RecordarPassActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".AccountCreatorActivity"
             android:exported="false">
             <meta-data

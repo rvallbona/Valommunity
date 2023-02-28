@@ -20,7 +20,8 @@ class AuthActivity : AppCompatActivity() {
         val logInButton : Button = findViewById(R.id.logInButton)
         val emailtxt : TextView = findViewById(R.id.emailEditText)
         val passtxt : TextView = findViewById(R.id.passwordEditText)
-        val regiterButton : Button = findViewById(R.id.newsignUpButton)
+        val regiterButton : TextView = findViewById(R.id.signUpButton)
+        val recordarButton : TextView = findViewById(R.id.btnOlvidar)
         firebaseAuth = Firebase.auth
         logInButton.setOnClickListener()
         {
@@ -28,6 +29,10 @@ class AuthActivity : AppCompatActivity() {
         }
         regiterButton.setOnClickListener {
             val i = Intent(this, AccountCreatorActivity::class.java)
+            startActivity(i)
+        }
+        recordarButton.setOnClickListener {
+            val i = Intent(this, RecordarPassActivity::class.java)
             startActivity(i)
         }
     }

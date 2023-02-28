@@ -41,9 +41,14 @@ class AuthActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful){
                     val user = firebaseAuth.currentUser
-                    Toast.makeText(baseContext,user?.uid.toString(), Toast.LENGTH_SHORT).show()
-                    val i = Intent(this, HomeActivity::class.java)
-                    startActivity(i)
+                    val verifica = user?.isEmailVerified
+                    if (verifica==true) {
+                        Toast.makeText(baseContext, user?.uid.toString(), Toast.LENGTH_SHORT).show()
+                        val i = Intent(this, HomeActivity::class.java)
+                        startActivity(i)
+                    }else{
+                        Toast.makeText(baseContext, "No ha verificado el email.", Toast.LENGTH_SHORT).show()
+                    }
                 }else{
                     Toast.makeText(baseContext,"ERROR", Toast.LENGTH_SHORT).show()
                 }

@@ -2,4 +2,6 @@
     <string name="app_name">ValommunityApp</string>
     <string name="strCrearCuenta"><u>Crear Cuenta</u></string>
     <string name="strOlvidar"><u>¿Olvidó su contraseña?</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

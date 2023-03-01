@@ -44,7 +44,7 @@ class AuthActivity : AppCompatActivity() {
                     val verifica = user?.isEmailVerified
                     if (verifica==true) {
                         Toast.makeText(baseContext, user?.uid.toString(), Toast.LENGTH_SHORT).show()
-                        val i = Intent(this, HomeActivity::class.java)
+                        val i = Intent(this, MainActivity::class.java)
                         startActivity(i)
                     }else{
                         Toast.makeText(baseContext, "No ha verificado el email.", Toast.LENGTH_SHORT).show()

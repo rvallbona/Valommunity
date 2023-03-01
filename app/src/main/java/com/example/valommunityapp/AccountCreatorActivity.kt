@@ -39,7 +39,7 @@ class AccountCreatorActivity : AppCompatActivity() {
                 if (task.isSuccessful){
                     sendEmailVerification()
                     Toast.makeText(baseContext, "Cuenta creada correctamente, se requiere verificación.", Toast.LENGTH_SHORT).show()
-                    val i = Intent(this, HomeActivity::class.java)
+                    val i = Intent(this, MainActivity::class.java)
                     startActivity(i)
                 }else{
                     Toast.makeText(baseContext, "Algo salió mal, ERROR: " + task.exception, Toast.LENGTH_SHORT).show()

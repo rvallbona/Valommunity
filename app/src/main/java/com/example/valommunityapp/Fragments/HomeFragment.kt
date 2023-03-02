@@ -1,6 +1,7 @@
 package com.example.valommunityapp.Fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.example.valommunityapp.Publication
 import com.example.valommunityapp.PublicationProvider
 import com.example.valommunityapp.R
 import com.example.valommunityapp.adapter.PublicationAdapter
+import com.google.firebase.firestore.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,6 +34,8 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: PublicationAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var newsPublicationsArrayList: ArrayList<Publication>
+
+    private lateinit var db : FirebaseFirestore
 
     lateinit var namePublication: Array<String>
     lateinit var imagePublication: Array<Int>
@@ -76,13 +80,43 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dataInit()
+        //dataInit()
         val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById(R.id.recyclerHomeFragment)
+
         recyclerView.layoutManager = layoutManager
+
         recyclerView.setHasFixedSize(true)
+
+        newsPublicationsArrayList = arrayListOf()
+
         adapter = PublicationAdapter(newsPublicationsArrayList)
+
         recyclerView.adapter = adapter
+
+        EventChangeListener()
+    }
+    private fun EventChangeListener(){
+
+        db = FirebaseFirestore.getInstance()
+        db.collection("Publications").
+                addSnapshotListener(object : EventListener<QuerySnapshot>{
+                    override fun onEvent(
+                        value: QuerySnapshot?,
+                        error: FirebaseFirestoreException?
+                    ) {
+                        if (error != null){
+                            Log.e("Firestore Error: ", error.message.toString())
+                            return
+                        }
+                        for (dc : DocumentChange in value?.documentChanges!!){
+                            if (dc.type == DocumentChange.Type.ADDED){
+                                newsPublicationsArrayList.add(dc.document.toObject(Publication::class.java))
+                            }
+                        }
+                        adapter.notifyDataSetChanged()
+                    }
+                })
     }
     private fun dataInit(){
         newsPublicationsArrayList = arrayListOf<Publication>()

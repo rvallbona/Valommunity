@@ -7,9 +7,13 @@ import com.example.valommunityapp.Fragments.AddPublicationFragment
 import com.example.valommunityapp.Fragments.HomeFragment
 import com.example.valommunityapp.Fragments.PerfilFragment
 import com.example.valommunityapp.databinding.MainHomeBinding
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var binding : MainHomeBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_home)

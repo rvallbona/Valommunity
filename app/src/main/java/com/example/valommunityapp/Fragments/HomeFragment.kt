@@ -80,23 +80,19 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //dataInit()
+        dataInit()
+        //EventChangeListener()
         val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById(R.id.recyclerHomeFragment)
-
         recyclerView.layoutManager = layoutManager
-
         recyclerView.setHasFixedSize(true)
-
-        newsPublicationsArrayList = arrayListOf()
-
+        //newsPublicationsArrayList = arrayListOf()
         adapter = PublicationAdapter(newsPublicationsArrayList)
-
         recyclerView.adapter = adapter
 
-        EventChangeListener()
+
     }
-    private fun EventChangeListener(){
+     fun EventChangeListener(){
 
         db = FirebaseFirestore.getInstance()
         db.collection("Publications").

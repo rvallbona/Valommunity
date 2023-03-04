@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.valommunityapp.R
 import com.example.valommunityapp.adapter.PublicationAdapter
+import com.google.firebase.auth.FirebaseAuth
 import io.grpc.internal.DnsNameResolver.SrvRecord
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,6 +31,8 @@ class PerfilFragment : Fragment() {
     private lateinit var name: TextView
     private lateinit var email: TextView
 
+    private lateinit var FirebaseAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -37,7 +40,6 @@ class PerfilFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,18 +47,12 @@ class PerfilFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_perfil, container, false)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val layoutManager = LinearLayoutManager(context)
         name = view.findViewById(R.id.nameTextView)
         email = view.findViewById(R.id.emailTextView)
-        setup(name.toString(), email.toString())
+        val user = FirebaseAuth.currentUser
     }
-    private fun setup(name: String, email: String){
-
-    }
-
     companion object {
         /**
          * Use this factory method to create a new instance of

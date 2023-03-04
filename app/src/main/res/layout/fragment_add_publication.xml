@@ -6,9 +6,49 @@
     android:background="#FF8080"
     tools:context=".Fragments.AddPublicationFragment">
 
-    <TextView
-        android:id="@+id/addPublicationTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="AddPublication" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/addPublication"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AddPublication"
+            android:textAlignment="center"
+            android:textSize="48sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/publication_username"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:ems="10"
+            android:hint="username"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/publication_url"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:ems="10"
+            android:hint="url_img"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/publication_description"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:ems="10"
+            android:hint="Descripcion"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/sendButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Publicar" />
+
+    </LinearLayout>
 </FrameLayout>

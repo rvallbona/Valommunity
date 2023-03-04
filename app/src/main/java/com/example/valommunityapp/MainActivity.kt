@@ -12,7 +12,6 @@ import com.example.valommunityapp.Fragments.HomeFragment
 import com.example.valommunityapp.Fragments.PerfilFragment
 import com.example.valommunityapp.databinding.MainHomeBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
 

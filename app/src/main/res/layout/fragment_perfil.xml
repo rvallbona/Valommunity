@@ -21,13 +21,13 @@
             android:id="@+id/nameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="name" />
+            android:hint="username" />
 
         <TextView
             android:id="@+id/emailTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="email" />
+            android:hint="email" />
 
     </LinearLayout>
 </FrameLayout>

@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import com.example.valommunityapp.Publication
 import com.example.valommunityapp.R
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
@@ -29,11 +30,11 @@ class AddPublicationFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-
     private lateinit var sendButton: Button
     private lateinit var username: EditText
     private lateinit var url: EditText
     private lateinit var description: EditText
+    private lateinit var FirebaseAuth: FirebaseAuth
     private lateinit var firebaseDatabase: FirebaseDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +54,7 @@ class AddPublicationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var database = FirebaseDatabase.getInstance().reference
+        val database = FirebaseDatabase.getInstance().reference
 
         sendButton = view.findViewById(R.id.sendButton)
         sendButton.setOnClickListener {

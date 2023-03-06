@@ -22,13 +22,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var newsPublicationsArrayList: ArrayList<Publication>
-    private lateinit var adapter: PublicationAdapter
 
     private lateinit var dbref: DatabaseReference
-
-    lateinit var namePublication: Array<String>
-    lateinit var imagePublication: Array<Int>
-    lateinit var descriptionPublication: Array<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

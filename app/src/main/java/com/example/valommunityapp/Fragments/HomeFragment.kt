@@ -82,6 +82,7 @@ class HomeFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerHomeFragment)
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
+        getData()
     }
     private fun getData(){
         dbref = FirebaseDatabase.getInstance().getReference("/")

@@ -31,6 +31,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var newsPublicationsArrayList: ArrayList<Publication>
+    private lateinit var adapter: PublicationAdapter
 
     private lateinit var dbref: DatabaseReference
 
@@ -76,17 +77,11 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //dataInit()
 
         val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById(R.id.recyclerHomeFragment)
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
-
-        //getData()
-        //adapter = PublicationAdapter(newsPublicationsArrayList)
-        //recyclerView.adapter = adapter
-
     }
     private fun getData(){
         dbref = FirebaseDatabase.getInstance().getReference("/")

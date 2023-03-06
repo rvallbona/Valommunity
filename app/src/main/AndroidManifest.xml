@@ -20,14 +20,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".RecordarPassActivity"
+            android:name=".LoginRegister.RecordarPassActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".AccountCreatorActivity"
+            android:name=".LoginRegister.AccountCreatorActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -41,7 +41,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".AuthActivity"
+            android:name=".LoginRegister.AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -51,16 +51,20 @@ class PerfilFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         name = view.findViewById(R.id.nameTextView)
         email = view.findViewById(R.id.emailTextView)
+
+        firebaseAuth = FirebaseAuth.getInstance()
+        val user = firebaseAuth.currentUser
+
+        //name
+        val namecurrentuser: String = user?.email.toString()
+        val delim = "."
+        val array: Array<String> = namecurrentuser.split(delim).toTypedArray()
+        name.text = array[0]
+
+        //gmail
+        email.text = user?.email.toString()
     }
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PerfilFragment.
-         */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =

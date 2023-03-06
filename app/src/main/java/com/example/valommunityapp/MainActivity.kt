@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.example.valommunityapp.Fragments.AddPublicationFragment
 import com.example.valommunityapp.Fragments.HomeFragment
 import com.example.valommunityapp.Fragments.PerfilFragment
+import com.example.valommunityapp.LoginRegister.AuthActivity
 import com.example.valommunityapp.databinding.MainHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -17,12 +18,15 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : MainHomeBinding
     private lateinit var firebaseAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.main_home)
         binding = MainHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         replaceFragment(HomeFragment())
+
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> replaceFragment(HomeFragment())
@@ -59,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         firebaseAuth.signOut()
         val i = Intent(this, AuthActivity::class.java)
         startActivity(i)
-}
+    }
     override fun onBackPressed() {
         return
     }

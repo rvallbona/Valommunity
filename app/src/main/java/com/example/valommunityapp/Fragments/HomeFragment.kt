@@ -7,25 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.valommunityapp.Publication
+import com.example.valommunityapp.LoginRegister.Publication
 import com.example.valommunityapp.R
 import com.example.valommunityapp.adapter.PublicationAdapter
 import com.google.firebase.database.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+
     private var param1: String? = null
     private var param2: String? = null
 
@@ -46,7 +37,6 @@ class HomeFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,16 +44,7 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
-
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
@@ -74,7 +55,6 @@ class HomeFragment : Fragment() {
                 }
             }
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -100,33 +80,6 @@ class HomeFragment : Fragment() {
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
         })
-
-    }
-
-
-    private fun dataInit(){
-        newsPublicationsArrayList = arrayListOf<Publication>()
-
-        namePublication = arrayOf(
-            getString(R.string.name_1),
-            getString(R.string.name_2),
-            getString(R.string.name_3)
-        )
-        imagePublication = arrayOf(
-            R.drawable.a,
-            R.drawable.b,
-            R.drawable.c
-        )
-        descriptionPublication = arrayOf(
-            getString(R.string.desc_1),
-            getString(R.string.desc_2),
-            getString(R.string.desc_3)
-        )
-        for(i in imagePublication.indices){
-            val newsPublications = Publication(namePublication[i], imagePublication[i].toString(), descriptionPublication[i])
-            newsPublicationsArrayList.add(newsPublications)
-        }
     }
 }

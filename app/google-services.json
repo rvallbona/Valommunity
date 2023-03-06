@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "545695927616",
+    "firebase_url": "https://valommunityapp-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "valommunityapp",
     "storage_bucket": "valommunityapp.appspot.com"
   },

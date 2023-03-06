@@ -1,7 +1,6 @@
 package com.example.valommunityapp.Fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.valommunityapp.Publication
-import com.example.valommunityapp.PublicationProvider
 import com.example.valommunityapp.R
 import com.example.valommunityapp.adapter.PublicationAdapter
-import com.google.firebase.firestore.*
+import com.google.firebase.database.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,16 +29,14 @@ class HomeFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var adapter: PublicationAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var newsPublicationsArrayList: ArrayList<Publication>
 
-    private lateinit var db : FirebaseFirestore
+    private lateinit var dbref: DatabaseReference
 
     lateinit var namePublication: Array<String>
     lateinit var imagePublication: Array<Int>
     lateinit var descriptionPublication: Array<String>
-    lateinit var news: Array<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,40 +76,40 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dataInit()
-        //EventChangeListener()
+        //dataInit()
+
         val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById(R.id.recyclerHomeFragment)
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
-        //newsPublicationsArrayList = arrayListOf()
-        adapter = PublicationAdapter(newsPublicationsArrayList)
-        recyclerView.adapter = adapter
 
+        //getData()
+        //adapter = PublicationAdapter(newsPublicationsArrayList)
+        //recyclerView.adapter = adapter
 
     }
-     fun EventChangeListener(){
-
-        db = FirebaseFirestore.getInstance()
-        db.collection("Publications").
-                addSnapshotListener(object : EventListener<QuerySnapshot>{
-                    override fun onEvent(
-                        value: QuerySnapshot?,
-                        error: FirebaseFirestoreException?
-                    ) {
-                        if (error != null){
-                            Log.e("Firestore Error: ", error.message.toString())
-                            return
-                        }
-                        for (dc : DocumentChange in value?.documentChanges!!){
-                            if (dc.type == DocumentChange.Type.ADDED){
-                                newsPublicationsArrayList.add(dc.document.toObject(Publication::class.java))
-                            }
-                        }
-                        adapter.notifyDataSetChanged()
+    private fun getData(){
+        dbref = FirebaseDatabase.getInstance().getReference("/")
+        newsPublicationsArrayList = arrayListOf<Publication>()
+        dbref.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (publicationSnapshot in snapshot.children) {
+                        val publication = publicationSnapshot.getValue(Publication::class.java)
+                        newsPublicationsArrayList.add(publication!!)
                     }
-                })
+                    recyclerView.adapter = PublicationAdapter(newsPublicationsArrayList)
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
     }
+
+
     private fun dataInit(){
         newsPublicationsArrayList = arrayListOf<Publication>()
 

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.example.valommunityapp.Publication
 import com.example.valommunityapp.R
 import com.google.firebase.auth.FirebaseAuth
@@ -31,9 +32,9 @@ class AddPublicationFragment : Fragment() {
     private var param2: String? = null
 
     private lateinit var sendButton: Button
-    private lateinit var username: EditText
-    private lateinit var url: EditText
-    private lateinit var description: EditText
+    private lateinit var username: String
+    private lateinit var url: String
+    private lateinit var description: String
     private lateinit var FirebaseAuth: FirebaseAuth
     private lateinit var firebaseDatabase: FirebaseDatabase
 
@@ -54,14 +55,15 @@ class AddPublicationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val database = FirebaseDatabase.getInstance().reference
+        var db = FirebaseDatabase.getInstance().reference
 
         sendButton = view.findViewById(R.id.sendButton)
         sendButton.setOnClickListener {
-            username = view.findViewById(R.id.publication_username)
-            url = view.findViewById(R.id.publication_url)
-            description = view.findViewById(R.id.publication_description)
-            database.setValue(Publication(username.toString(), url.toString(), description.toString()))
+            username = view.findViewById<EditText?>(R.id.publication_username).text.toString()
+            url = view.findViewById<EditText?>(R.id.publication_url).text.toString()
+            description = view.findViewById<EditText?>(R.id.publication_description).text.toString()
+            db.child(username.toString()).setValue(Publication(username, url, description))
+            Toast.makeText(view.context, "send", Toast.LENGTH_SHORT).show()
         }
     }
     companion object {

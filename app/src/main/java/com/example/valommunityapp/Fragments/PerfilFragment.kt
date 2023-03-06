@@ -31,7 +31,7 @@ class PerfilFragment : Fragment() {
     private lateinit var name: TextView
     private lateinit var email: TextView
 
-    private lateinit var FirebaseAuth: FirebaseAuth
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +51,6 @@ class PerfilFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         name = view.findViewById(R.id.nameTextView)
         email = view.findViewById(R.id.emailTextView)
-        val user = FirebaseAuth.currentUser
     }
     companion object {
         /**

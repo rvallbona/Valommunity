@@ -21,7 +21,7 @@ class PublicationAdapter(private val newsList: ArrayList<Publication>) : Recycle
     override fun onBindViewHolder(holder: PublicationViewHolder, position: Int) {
         val currentItem = newsList[position]
         holder.namePublication.text = currentItem.name
-        holder.imagePublication.setImageResource(currentItem.photo.toInt())
+        holder.imagePublication.text = currentItem.photo
         holder.descriptionPublication.text = currentItem.description
     }
 
@@ -30,7 +30,7 @@ class PublicationAdapter(private val newsList: ArrayList<Publication>) : Recycle
     }
     class PublicationViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val namePublication : TextView = itemView.findViewById(R.id.namePublication)
-        val imagePublication : ImageView = itemView.findViewById(R.id.imageViewPublication)
+        val imagePublication : TextView = itemView.findViewById(R.id.urlImg)
         val descriptionPublication : TextView = itemView.findViewById(R.id.descriptionPublication)
     }
 }
